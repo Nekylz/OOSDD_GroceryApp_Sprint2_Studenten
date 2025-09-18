@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Google.Android.Material.Dialog;
 using Grocery.App.Views;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
@@ -34,10 +35,22 @@ namespace Grocery.App.ViewModels
 
         private void GetAvailableProducts()
         {
-            //Maak de lijst AvailableProducts leeg
-            //Haal de lijst met producten op
+            AvailableProducts.Clear(); //Maakt de lijst AvailableProducts leeg.
+
+            var Producten = _productService.GetAll(); //haalt de lijst met producten op.
+
             //Controleer of het product al op de boodschappenlijst staat, zo niet zet het in de AvailableProducts lijst
-            //Houdt rekening met de voorraad (als die nul is kun je het niet meer aanbieden).            
+            //Houdt rekening met de voorraad (als die nul is kun je het niet meer aanbieden). 
+            foreach (var product in Producten)
+            {
+                Bool InList =(from item in MyGroceryListItems where item.ProductId == product.Id select item).Any();
+            }
+            //Als er geen producten beschikbaar zijn, voeg een dummy product toe met de naam "Geen producten beschikbaar"
+            if (AvailableProducts.Count == 0)
+            {
+                AvailableProducts.Add(new Product(0, "Geen producten beschikbaar", 0));
+            }
+            
         }
 
         partial void OnGroceryListChanged(GroceryList value)

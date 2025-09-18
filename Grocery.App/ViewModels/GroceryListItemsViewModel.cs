@@ -43,7 +43,7 @@ namespace Grocery.App.ViewModels
             //Houdt rekening met de voorraad (als die nul is kun je het niet meer aanbieden). 
             foreach (var product in Producten)
             {
-                Bool InList =(from item in MyGroceryListItems where item.ProductId == product.Id select item).Any();
+                bool InList =(from item in MyGroceryListItems where item.ProductId == product.Id select item).Any();
             }
             //Als er geen producten beschikbaar zijn, voeg een dummy product toe met de naam "Geen producten beschikbaar"
             if (AvailableProducts.Count == 0)

@@ -5,7 +5,7 @@ In deze versie zijn de wijzigingen doorgevoerd en is de code compleet.
 
 ## Studentversie:  
 ### UC04 Kiezen kleur boodschappenlijst  
-Is compleet.
+Is compleet. bijna dan
 
 ### UC05 Product op boodschappenlijst plaatsen:   
 - `GetAvailableProducts()`  

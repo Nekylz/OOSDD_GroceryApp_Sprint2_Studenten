@@ -20,7 +20,7 @@ namespace Grocery.Core.Data.Repositories
         {
             foreach(var client in clientList)
             {
-                if(client.EmailAddress == email)
+                if(client._emailAddress == email)
                     return client;
             }
             return null;
@@ -28,14 +28,7 @@ namespace Grocery.Core.Data.Repositories
 
         public Client? Get(int id)
         {
-            foreach (var client in clientList)
-            {
-                if (client.Id == id)
-                {
-                    return client;
-                }
-                return null;
-            }
+            return clientList.FirstOrDefault(client => client.Id == id);
         }
 
         public List<Client> GetAll()

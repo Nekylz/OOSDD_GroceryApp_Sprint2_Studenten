@@ -13,11 +13,15 @@ namespace Grocery.Core.Services
         }
         public Client? Login(string email, string password)
         {
-            var client = _clientService.Get(email);
+            Client client = _clientService.Get(email)!; //nullable error prevention met de !
+            if (PasswordHelper.VerifyPassword(password, client._password))
+            {
+                return client;
+            }
             if (client == null)
-                return null;
+            { return null; }
 
-            return client.Password == password;
+            return null;
         }
     }
 }
